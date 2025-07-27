@@ -1,26 +1,27 @@
-const LearningOutcomeItem = () => {
+import { Pointer, PointersSection } from "@/types/responseType";
+import { CheckIcon } from "lucide-react";
+import SectionTitle from "./common/SectionTitle";
+
+const LearningOutcomeItem = ({ item }: { item: Pointer }) => {
   return (
-    <div>
-      icon
-      <p>Detailed rules and regulations of each module of the IELTS test</p>
+    <div className="flex items-start gap-2 mb-2">
+      <CheckIcon size={18} className="shrink-0 mt-1 text-blue-500" />
+      <p>{item.text}</p>
     </div>
   );
 };
 
-const LearningOutcome = () => {
+const LearningOutcome = ({ pointer }: { pointer: PointersSection }) => {
   return (
-    <div>
-      <h1>What you will learn by doing the course</h1>
+    <section id={pointer.type}>
+      <SectionTitle label={pointer.name} />
 
-      <div className="grid grid-cols-1 gap-4 rounded-md border bg-[#111827]/10 p-5 md:grid-cols-2 md:gap-8">
-        <LearningOutcomeItem />
-        <LearningOutcomeItem />
-        <LearningOutcomeItem />
-        <LearningOutcomeItem />
-        <LearningOutcomeItem />
-        <LearningOutcomeItem />
+      <div className="grid grid-cols-1 gap-4 rounded-md border border-gray-300 p-5 md:grid-cols-2 md:gap-8">
+        {pointer?.values.map((item, i) => {
+          return <LearningOutcomeItem key={`${item.id}-${i}`} item={item} />;
+        })}
       </div>
-    </div>
+    </section>
   );
 };
 

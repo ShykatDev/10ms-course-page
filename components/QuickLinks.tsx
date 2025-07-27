@@ -1,34 +1,32 @@
-const links = [
-  {
-    label: "কোর্স ইন্সট্রাক্টর",
-    value: "#instructor",
-  },
-  {
-    label: "কোর্সটি যেভাবে সাজানো হয়েছে",
-    value: "#course-flow",
-  },
-  {
-    label: "কোর্সটি করে যা শিখবেন",
-    value: "#learning-outcome",
-  },
-  {
-    label: "কোর্স এক্সক্লুসিভ ফিচার",
-    value: "#exclusive-feature",
-  },
-  {
-    label: "কোর্স সম্পর্কে বিস্তারিত",
-    value: "#course-details",
-  },
-];
+import { sectionTypes } from "@/types/responseType";
 
 const QuickLinks = () => {
+  const handleScroll = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 100;
+      const bodyTop = document.body.getBoundingClientRect().top;
+      const elementTop = el.getBoundingClientRect().top;
+      const scrollTo = elementTop - bodyTop - offset;
+
+      window.scrollTo({
+        top: scrollTo,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="sticky top-0">
-      <ul className="flex bg-white gap-6 flex-nowrap overflow-auto">
-        {links.map((item, i) => {
+      <ul className="scrollbar-hide relative flex flex-nowrap gap-4  scroll-smooth snap-x  bg-white">
+        {sectionTypes.map((item, i) => {
           return (
-            <li className="shrink-0" key={i}>
-              {item.label}
+            <li
+              onClick={() => handleScroll(item)}
+              className="shrink-0 capitalize p-4 cursor-pointer"
+              key={i}
+            >
+              {item.includes("_") ? item.split("_").join(" ") : item}
             </li>
           );
         })}

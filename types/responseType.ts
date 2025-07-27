@@ -1,10 +1,13 @@
 // Common types
-export type SectionType =
-  | "instructors"
-  | "features"
-  | "pointers"
-  | "feature_explanations"
-  | "about";
+export const sectionTypes = [
+  "instructors",
+  "features",
+  "pointers",
+  "feature_explanations",
+  "about",
+] as const;
+
+export type SectionType = (typeof sectionTypes)[number];
 
 export type Instructor = {
   description: string;
@@ -15,9 +18,35 @@ export type Instructor = {
   slug: string;
 };
 
-export type Feature = { title: string; description: string };
-export type Pointer = { title: string; icon: string };
-export type FeatureExplanation = { title: string; content: string };
+export type Feature = {
+  icon: string;
+  id: string;
+  subtitle: string;
+  title: string;
+};
+
+export type Pointer = {
+  color: string;
+  icon: string;
+  id: string;
+  text: string;
+};
+
+export type Exclusive = {
+  file_type: string;
+  file_url: string;
+  id: string;
+  title: string;
+  video_thumbnail: string;
+  checklist: string[];
+};
+
+export type Details = {
+  description: string;
+  icon: string;
+  id: string;
+  title: string;
+};
 
 interface CommonSection {
   name: string;
@@ -31,46 +60,25 @@ export interface InstructorsSection extends CommonSection {
   values: Instructor[];
 }
 
-// export type InstructorsSection = {
-//   type: "instructors";
-//   value: Instructor[];
-// };
-
-export type FeaturesSection = {
+export interface FeaturesSection extends CommonSection {
   type: "features";
-  name: string;
-  description: string;
-  bg_color: string;
-  order_idx: number;
-  value: Feature[];
-};
+  values: Feature[];
+}
 
-export type PointersSection = {
+export interface PointersSection extends CommonSection {
   type: "pointers";
-  name: string;
-  description: string;
-  bg_color: string;
-  order_idx: number;
-  value: Pointer[];
-};
+  values: Pointer[];
+}
 
-export type FeatureExplanationsSection = {
+export interface FeatureExplanationsSection extends CommonSection {
   type: "feature_explanations";
-  name: string;
-  description: string;
-  bg_color: string;
-  order_idx: number;
-  value: FeatureExplanation[];
-};
+  values: Exclusive[];
+}
 
-export type AboutSection = {
+export interface AboutSection extends CommonSection {
   type: "about";
-  name: string;
-  description: string;
-  bg_color: string;
-  order_idx: number;
-  value: string;
-};
+  values: Details[];
+}
 
 export type Section =
   | InstructorsSection
