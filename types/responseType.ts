@@ -89,9 +89,9 @@ export type Section =
 
 export type Medium = {
   name: string;
-  resource_type: string;
+  resource_type: "image" | "video";
   resource_value: string;
-  thumbnail_url: string;
+  thumbnail_url?: string;
 };
 
 export type Checklist = {

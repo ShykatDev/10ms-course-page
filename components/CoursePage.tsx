@@ -13,6 +13,8 @@ import Title from "./Title";
 const CoursePage = () => {
   const { data, isLoading } = useData();
 
+  console.log(data);
+
   if (isLoading) {
     return "Loading...";
   }
@@ -24,7 +26,7 @@ const CoursePage = () => {
             <Title title={data?.title} desc={data?.description} />
           </div>
           <section className="absolute right-0 top-10">
-            <Highlight />
+            <Highlight data={data} />
           </section>
         </div>
       </div>
