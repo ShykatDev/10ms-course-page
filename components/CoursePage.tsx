@@ -9,30 +9,29 @@ import Instructors from "./Instructors";
 import LearningOutcome from "./LearningOutcome";
 import QuickLinks from "./QuickLinks";
 import Title from "./Title";
+import Loading from "./common/Loading";
 
 const CoursePage = () => {
   const { data, isLoading } = useData();
 
-  console.log(data);
-
   if (isLoading) {
-    return "Loading...";
+    return <Loading />;
   }
   return (
     <div className="relative">
       <div className="top-section w-screen min-h-[300px] bg-[url(/assets/bg.jpeg)] bg-no-repeat bg-cover bg-center">
-        <div className="container relative mx-auto ">
-          <div className="w-2/3">
+        <div className="md:container relative mx-auto ">
+          <div className="md:w-2/3 hidden md:block">
             <Title title={data?.title} desc={data?.description} />
           </div>
-          <section className="absolute right-0 top-10">
+          <section className="md:absolute z-10 md:bg-white right-0 lg:right-10 xl:right-32 top-10">
             <Highlight data={data} />
           </section>
         </div>
       </div>
       <div className="container mx-auto">
-        <div className="w-2/3 relative space-y-8">
-          <QuickLinks />
+        <div className="md:w-3/5 lg:w-3/6 xl:w-3/5 relative space-y-8">
+          <QuickLinks data={data} />
 
           {data?.sections.map((item) => {
             if (item.type === "instructors") {

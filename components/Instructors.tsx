@@ -10,7 +10,10 @@ const Instructors = ({ instructors }: { instructors: InstructorsSection }) => {
       <div className="p-5 pb-0 border border-gray-300 rounded-md ">
         {instructors.values.map((item, i) => {
           return (
-            <div key={`${item.name}-${i}`} className="flex items-center gap-6">
+            <div
+              key={`${item.name}-${i}`}
+              className="flex flex-col md:flex-row md:items-center gap-6 gap-y-2 md:gap-y-0 pt-4 md:pt-0"
+            >
               <Image
                 alt="instructor"
                 src={item?.image}

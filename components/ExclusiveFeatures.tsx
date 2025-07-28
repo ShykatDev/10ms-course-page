@@ -5,7 +5,7 @@ import SectionTitle from "./common/SectionTitle";
 
 const FeatureItem = ({ item }: { item: Exclusive }) => {
   return (
-    <div className="flex gap-4 py-5">
+    <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 py-5">
       <div className="flex flex-col gap-2">
         <h2 className="text-sm font-[500px] leading-[30px] text-[#111827] md:text-base">
           {item.title}
@@ -26,7 +26,7 @@ const FeatureItem = ({ item }: { item: Exclusive }) => {
         src={item.file_url}
         width={300}
         height={300}
-        className="w-60 object-cover"
+        className="w-full md:w-60 object-cover"
       />
     </div>
   );
